@@ -1,0 +1,1 @@
+export PYTHONPATH=$PYTHONPATH:/app/deepmind-stock/deepmind-stock-robot
