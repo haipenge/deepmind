@@ -8,8 +8,8 @@ import os
 'IO 工具'
 __author__ = 'haipenge'
 #cwd = os.getcwd()
-logging.config.fileConfig(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'resources',"logging.conf")) 
-logging = logging.getLogger("default")
+#logging.config.fileConfig(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'resources',"logging.conf")) 
+#logging = logging.getLogger("default")
 
 ##################
 #IO 操作工具
