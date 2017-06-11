@@ -47,6 +47,23 @@ class IOUtil(object):
 		    os.makedirs(dirs)
 		with open(file, 'w') as f:
 			f.write(content)
+	#替换文件中的内容,按行替换
+	def replace(self,file,old_content,new_content):
+		try:
+			origin_lines = []
+			f = open(file,'r+')
+			origin_lines = f.readlines()
+			f.seek(0)
+			f.truncate()
+			for line in origin_lines:
+				line = line.replace(old_content,new_content)
+				f.write(line)
+			f.close()
+		except Exception,e:
+			logging.error(e)
+
+
+
 
 ##############################
 #property 文件操作工具类
