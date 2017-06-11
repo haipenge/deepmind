@@ -35,7 +35,8 @@ class SmartJava(object):
 		clazz.component = component
 		
 	def ask(self):
-		project.name = raw_input('请输入项目名称:')
+		print project.name
+		project.name = project.name if project.name != '' else raw_input('请输入项目名称:') 
 		component.name = raw_input('模块名:')
 		while component.name == None or component.name == '':
 			component.name = raw_input('模块名:')
@@ -99,6 +100,11 @@ class Project(object):
 		self._repository = None
 		#项目的基本配置信息
 		self._configs={}
+		properties = Properties()
+		self.name = properties.get('project.name') if properties.get('project.name') != '' else ''
+		self.package_name = properties.get('project.package.name') if properties.get('project.package.name') != '' else ''
+		self.type = properties.get('project.repository') if properties.get('project.repository') != '' else ''
+		self.root_dir = properties.get('project.root.dir') if properties.get('project.root.dir') != '' else ''
 	#项目名称
 	@property
 	def name(self):
