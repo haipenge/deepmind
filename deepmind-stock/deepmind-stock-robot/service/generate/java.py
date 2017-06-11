@@ -35,7 +35,6 @@ class SmartJava(object):
 		clazz.component = component
 		
 	def ask(self):
-		print project.name
 		project.name = project.name if project.name != '' else raw_input('请输入项目名称:') 
 		component.name = raw_input('模块名:')
 		while component.name == None or component.name == '':
