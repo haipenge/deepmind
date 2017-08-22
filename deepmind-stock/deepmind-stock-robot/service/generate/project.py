@@ -123,7 +123,7 @@ class Project(object):
 
 	#生成基础源码目录
 	def __make_source_dirs(self):
-		xdirs = [self.java_dir(),self.test_dir(),self.resources_dir(),self.filters_dir()]
+		xdirs = [self.java_dir(),self.test_dir(),self.resources_dir(),self.filters_dir(),self.entity_project_dir(),self.entity_project_java_dir()]
 		logging.debug(xdirs)
 		for dir in xdirs:
 			if os.path.exists(dir) is False:
@@ -157,19 +157,12 @@ class Project(object):
 			io.write(properties_file,lines)
 	#生成pom文件
 	def __generate_pom(self):
-		entity_tpl=os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-entity-jpa.xml')
-		api_tpl=os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-api.xml')
-		tplUtil = TplUtil()
-		#res_entity = tplUtil.render(entity_tpl,obj=self)
-		#res_api = tplUtil.render(api_tpl,obj=self)
-		io_util = IOUtil()
 		pom_entity_file=os.path.join(self.entity_project_dir(),'pom.xml')
 		pom_api_file=os.path.join(self.project_dir(),'pom.xml')
-		#if not os.path.exists(pom_entity_file):
-			#io_util.write(pom_entity_file,res_entity)
-		#if not os.path.exists(pom_api_file):
-			#io_util.write(pom_api_file, res_api)
-
+		if not os.path.exists(pom_entity_file):
+			shutil.copy(os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-entity-jpa.xml'), pom_entity_file)
+		if not os.path.exists(pom_api_file):
+			shutil.copy(os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-api.xml'),pom_api_file)
     #生成项目结构及基础配置
 	def generate(self):
 		self.__make_source_dirs()
