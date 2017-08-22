@@ -26,6 +26,7 @@ class Project(object):
 		#项目的基本配置信息
 		self._configs={}
 		properties = Properties()
+		self.properties=properties
 		self.name = properties.get('project.name') if properties.get('project.name') != '' else ''
 		self.package_name = properties.get('project.package.name') if properties.get('project.package.name') != '' else ''
 		self.type = properties.get('project.repository') if properties.get('project.repository') != '' else ''
@@ -80,15 +81,23 @@ class Project(object):
 		self._configs['project.repository'] = self._repository
 	#获取基础目录
 	def project_dir(self):
-		return os.path.join(self.root_dir,self.name)
+		return os.path.join(self.root_dir,self.name + '-api')
 	def java_dir(self):
-		return os.path.join(self.root_dir,self.name,'src','main','java')
+		return os.path.join(self.project_dir(),'src','main','java')
 	def test_dir(self):
-		return os.path.join(self.root_dir,self.name,'src','main','test','java')
+		return os.path.join(self.project_dir(),'src','main','test','java')
 	def resources_dir(self):
-		return os.path.join(self.root_dir,self.name,'src','main','resources')
+		return os.path.join(self.project_dir(),'src','main','resources')
 	def filters_dir(self):
-		return os.path.join(self.root_dir,self.name,'src','main','filters')
+		return os.path.join(self.project_dir(),'src','main','filters')
+	###################实体项目类#############################################
+	#实体类项目路径，分离实体类与具体服务类
+	def entity_project_dir(self):
+		return os.path.join(self.root_dir,self.name + '-entity')
+	def entity_project_java_dir(self):
+		return os.path.join(self.entity_project_dir(),'src','main','java')
+	
+	
 	#获取项目包路径 exam:root/src/main/java/com/faceye
 	def java_package_dir(self):
 		packages = self.package_name.split('.')
@@ -96,6 +105,13 @@ class Project(object):
 		for p in packages:
 			java_package_dir = os.path.join(java_package_dir,p)
 		return java_package_dir
+	#返回entity java 包路径
+	def entity_package_dir(self):
+		packages = self.package_name.split(".")
+		entity_java_package_dir=self.entity_project_java_dir()
+		for p in packages:
+			entity_package_dir = os.path.join(entity_java_package_dir,p)
+		return entity_java_package_dir
 	#获取测试包路径,exam:root/src/main/test/java/com/faceye/test
 	def test_package_dir(self):
 		packages = self.package_name.split('.')
@@ -117,10 +133,13 @@ class Project(object):
 	def __create_packages(self):
 		java_package_dir = self.java_package_dir()
 		test_package_dir = self.test_package_dir()
+		entity_package_dir = self.entity_package_dir()
 		if os.path.exists(java_package_dir) is False:
 			os.makedirs(java_package_dir)
 		if os.path.exists(test_package_dir) is False:
 			os.makedirs(test_package_dir)
+		if os.path.exists(entity_package_dir) is False:
+			os.makedirs(entity_package_dir)
 	#编写properties文件
 	def __create_properties(self):
 		properties_file = os.path.join(self.project_dir(),'project.properties')
@@ -135,11 +154,25 @@ class Project(object):
 				lines += '\n'
 		if lines != '':
 			io = IOUtil()
-			io.write(properties_file,lines) 
-
+			io.write(properties_file,lines)
+	#生成pom文件
+	def __generate_pom(self):
+		entity_tpl=os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-entity-jpa.xml')
+		api_tpl=os.path.join(self.properties.get('java.generate.tpl.dir'),'pom-api.xml')
+		tplUtil = TplUtil()
+		#res_entity = tplUtil.render(entity_tpl,obj=self)
+		#res_api = tplUtil.render(api_tpl,obj=self)
+		io_util = IOUtil()
+		pom_entity_file=os.path.join(self.entity_project_dir(),'pom.xml')
+		pom_api_file=os.path.join(self.project_dir(),'pom.xml')
+		#if not os.path.exists(pom_entity_file):
+			#io_util.write(pom_entity_file,res_entity)
+		#if not os.path.exists(pom_api_file):
+			#io_util.write(pom_api_file, res_api)
 
     #生成项目结构及基础配置
 	def generate(self):
 		self.__make_source_dirs()
 		self.__create_packages()
+		self.__generate_pom()
 		self.__create_properties()
