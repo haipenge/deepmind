@@ -43,12 +43,13 @@ class Component(object):
 	#生成组件、模块
 	def generate(self):
 		java_package_dir = self.project.java_package_dir()
+		entity_package_dir=self.project.entity_package_dir()
 		test_package_dir = self.project.test_package_dir()
 		component_java_service_package_dir = os.path.join(java_package_dir,'component',self.name,'service','impl')
 		component_test_service_package_dir = os.path.join(test_package_dir,'component',self.name,'service')
 		component_java_repository_package_dir = os.path.join(java_package_dir,'component',self.name,'repository',self.project.repository,'impl')
 		component_test_repository_package_dir = os.path.join(test_package_dir,'component',self.name,'repository',self.project.repository)
-		component_java_entity_package_dir = os.path.join(java_package_dir,'component',self.name,'entity')
+		component_java_entity_package_dir = os.path.join(entity_package_dir,'component',self.name,'entity')
 		component_java_controller_package_dir = os.path.join(java_package_dir,'component',self.name,'controller')
 		component_test_controller_package_dir = os.path.join(test_package_dir,'component',self.name,'controller')
 		xdirs = [component_java_service_package_dir,component_test_service_package_dir,component_java_repository_package_dir,component_test_repository_package_dir,component_java_entity_package_dir,component_java_controller_package_dir,component_test_controller_package_dir]

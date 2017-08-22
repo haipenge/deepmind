@@ -1,4 +1,27 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//deepmind-stock/deepmind-stock-robot/service/generate/clazz.py=utf-8
 encoding//deepmind-stock/deepmind-stock-robot/service/generate/java.py=utf-8
 encoding//deepmind-stock/deepmind-stock-robot/service/generate/project.py=utf-8
+=======
+encoding//deepmind-stock/deepmind-stock-robot/hello.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/clazz.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/component.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/java.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/project.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/property.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/service/generate/simple.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/template/template.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/env_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/io_util_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/logging_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/module_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/template_unit_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/test/unit_test_case.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/util/env.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/util/format_util.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/util/getftp.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/util/io_util.py=utf-8
+encoding//deepmind-stock/deepmind-stock-robot/util/tpl_util.py=utf-8
+encoding/<project>=UTF-8
+>>>>>>> 4d6cbe2c8dd09e2132369ac58d43dff471d4bf37

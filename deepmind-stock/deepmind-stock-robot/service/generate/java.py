@@ -56,9 +56,7 @@ class SmartJava(object):
 		if is_spring_boot_project == 'Y':
 			project.type='spring_boot'
 			for x in os.listdir(os.path.join('template','spring_boot')):
-				print('x is:',x)
 				if os.path.isfile(os.path.join('template','spring_boot',x)):
-					print('x:',x,'is a file')
 					shutil.copy(os.path.join('template','spring_boot',x), project.project_dir())
 				else:
 					print('x ',x,'is not a file')
@@ -84,8 +82,6 @@ class SmartJava(object):
 			property.generate()
 			self.is_continue = raw_input('继续创建属性输入[ Y ],结束[ N ] -->')
 
-
-
     #生成项目骨架->包结构
 	def generate_empty_project_struct(self):
 		project.root_dir = properties.get('java.generate.dir')
@@ -95,14 +91,6 @@ class SmartJava(object):
 		self.clazz()
 		self.property()
     
-
-	
-
-
-
-
-
-
 class Xml(Simple):
 	def __init__(self):
 		pass

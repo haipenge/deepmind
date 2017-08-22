@@ -36,7 +36,7 @@ class Clazz(Simple):
 	#取得输出路径
 	def output_path(self,path):
 		output_paths ={
-		'entity':os.path.join(self.project.java_package_dir(),'component',self.component.name,'entity',self.name+'.java'),
+		'entity':os.path.join(self.project.entity_package_dir(),'component',self.component.name,'entity',self.name+'.java'),
 		'service':os.path.join(self.project.java_package_dir(),'component',self.component.name,'Service',self.name+'Service.java'),
 		'service.impl':os.path.join(self.project.java_package_dir(),'component',self.component.name,'service','impl',self.name+'ServiceImpl.java'),
 		'jpa.repository':os.path.join(self.project.java_package_dir(),'component',self.component.name,'repository',self.project.repository,self.name+'Repository.java'),
